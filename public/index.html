@@ -17,6 +17,46 @@
         #main-h4{
             margin-bottom: 15%;
         }
+        .circle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            mask: radial-gradient(closest-side, transparent 85%, white 60%);
+            background: conic-gradient(#E39E22 var(--progress), #ddd var(--progress));
+        }
+        #stop-icon,#close-icon{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            transition: 0.4s ease;
+        }
+        #stop-icon:hover,#close-icon:hover{
+            box-shadow: rgba(50, 50, 93, 0.653) 0px 50px 100px -20px, rgba(0, 0, 0, 0.693) 0px 30px 60px -30px, rgba(10, 37, 64, 0.673) 0px -2px 6px 0px inset;
+        }
+        @keyframes uploadText {
+            0% {
+                color: #D5F4FF;
+            }
+            50% {
+                color: #2C333B;
+            }
+            100% {
+                color: #D5F4FF;
+            }
+        }
+        #upload-text{
+            animation: uploadText 1.5s infinite;
+        }
     </style>
 
 </head>
@@ -43,10 +83,25 @@
                 <img id="upload-icon" src="imgs/upload-to-cloud-50.png" alt="upload-icon" class="mt-5 cursor-pointer">
             </div>
         </div>
+                                                                 <!-- Pass the extract and display the percentage -->
+        <div id="upload-area" class="absolute z-10 w-2/5 h-2/4 p-2 top-80 left-1/2 transform -translate-x-1/2 bg-back-0 rounded-md flex flex-col items-center justify-center shadow-2xl hidden bg-gray-700">
+            <div class="flex flex-row items-center justify-center gap-10">
+                <img id="stop-icon" src="imgs/stop-50.png" alt="stop" class="w-8 h-8 cursor-pointer rounded-full">
+                <div class="circle">
+                    <div class="progress"></div>
+                    <span class="progress-text absolute text-gray-0 bg-back-0 text-lg" style="font-family: 'Roboto'; font-feature-settings: 'tnum';" id="progress-text">0%</span>
+                </div>
+                <img id="close-icon" src="imgs/close-50.png" alt="close" class="w-8 h-8 cursor-pointer rounded-full">
+            </div>
+            <h3 id="upload-text" class="text-center text-sm text-gray-0 mt-5">Uploading...</h3>
+        </div>
 
     </main>    
 
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="scripts/script.js"></script>
+    
 </body>
 </html>
