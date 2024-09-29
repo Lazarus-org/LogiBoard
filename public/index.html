@@ -73,6 +73,19 @@
         #copy:hover,#open:hover{
             background-color: rgb(141, 18, 18);
         }
+        #back-link{
+            height: 85vh;
+            box-shadow: rgba(50, 50, 93, 0.542) 0px 50px 100px -20px, rgba(0, 0, 0, 0.647) 0px 30px 60px -30px, rgba(10, 37, 64, 0.568) 0px -2px 6px 0px inset;
+            background: rgb(1,0,4);
+            background: radial-gradient(circle, rgba(1,0,4,1) 40%, rgb(4, 3, 19) 60%);
+        }
+        #file-link{
+            display: grid;
+            grid-template-columns: 0.5fr 2fr;
+        }
+        #file-structure{
+            overflow-y: auto;
+        }
     </style>
 
 </head>
@@ -137,6 +150,16 @@
         </div>
 
     </main> 
+                                                                 <!-- Display the content of the extracted file -->
+    <div id="back-link" class="w-11/12 mt-3 m-auto rounded-md shadow-2xl flex flex-col" style="display: none;">
+        <span class="flex flex-row items-center justify-end m-auto mt-2" style="width: 99%;">
+            <img src="imgs/multiply-50.png" alt="Close-icon" class="w-6 h-6 cursor-pointer" id="close-back-link">
+        </span>
+        <span id="file-link" class="flex-row items-center justify-start m-auto mt-4 text-white" style="width: 95%;">
+            <div id="file-structure" class="p-2" style="background-color: #32373df2; height: 500px; border-radius: 10px 0px 0px 10px;"></div>
+            <div id="file-display" class="p-4 bg-black" style="overflow-y: auto; max-height: 500px; min-height: 500px; font-size: 10px;"></div>
+        </span>
+    </div>
 
 
 
