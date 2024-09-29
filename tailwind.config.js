@@ -3,9 +3,6 @@ module.exports = {
   content: ["./public/**/*.{html,js}"],
   theme: {
     extend: {
-      fontFamily:{
-        body:["Kotta One"],
-      },
       backgroundColor:{
         back:["#D5F4FF"],
         gray:["#2C333B"]

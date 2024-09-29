@@ -81,6 +81,81 @@ function extractZip(file) {
 }
 
 
+function displayFolderContents(folder, container, zip, path) {
+    container.innerHTML = ''; 
+
+    Object.keys(folder).forEach(item => {
+        const itemPath = path.concat(item).join('/');
+        if (folder[item] === null) {
+            const fileItem = document.createElement('div');
+            fileItem.classList.add('cursor-pointer', 'text-blue-300', 'mb-2');
+    
+            if (item.endsWith('.txt') || item.endsWith('.log')) {
+                fileItem.innerHTML = `<img src="imgs/txt-icon.png" class="inline-block w-5 h-5 mr-2">${item}`;
+            } else if (item.endsWith('.jpg') || item.endsWith('.png')) {
+                fileItem.innerHTML = `<img src="imgs/image-icon.png" class="inline-block w-5 h-5 mr-2">${item}`;
+            } else if (item.endsWith('.pdf')) {
+                fileItem.innerHTML = `<img src="imgs/pdf-icon.png" class="inline-block w-5 h-5 mr-2">${item}`;
+            } else {
+                fileItem.innerHTML = `<img src="imgs/file-icon.png" class="inline-block w-5 h-5 mr-2">${item}`;
+            }
+    
+
+            fileItem.addEventListener('click', async () => {
+                const fileData = await zip.file(itemPath).async('blob');
+    
+                if (item.endsWith('.txt') || item.endsWith('.log')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const textContainer = document.createElement('pre');
+                        textContainer.textContent = e.target.result;
+                        document.getElementById('file-display').innerHTML = '';
+                        document.getElementById('file-display').appendChild(textContainer);
+                    };
+                    reader.readAsText(fileData);
+                } else if (item.endsWith('.jpg') || item.endsWith('.png')) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = URL.createObjectURL(fileData);
+                    imgElement.classList.add('max-w-full', 'h-auto');
+                    document.getElementById('file-display').innerHTML = '';
+                    document.getElementById('file-display').appendChild(imgElement);
+                } else if (item.endsWith('.pdf')) {
+                    const pdfIframe = document.createElement('iframe');
+                    pdfIframe.src = URL.createObjectURL(fileData);
+                    pdfIframe.classList.add('w-full', 'h-screen');
+                    document.getElementById('file-display').innerHTML = '';
+                    document.getElementById('file-display').appendChild(pdfIframe);
+                } else {
+                    downloadFile(zip, itemPath);
+                }
+            });
+    
+            container.appendChild(fileItem);
+        } else {
+            const folderItem = document.createElement('div');
+            folderItem.innerHTML = `<img src="imgs/folder-icon.png" class="inline-block w-5 h-5 mr-2">${item}`;
+            folderItem.classList.add('cursor-pointer', 'text-yellow-300', 'mb-2');
+            folderItem.addEventListener('click', () => {
+                displayFolderContents(folder[item], container, zip, path.concat(item));
+            });
+            container.appendChild(folderItem);
+        }
+    });
+    
+    
+    if (path.length > 0) {
+        const backButton = document.createElement('div');
+        backButton.textContent = 'Back';
+        backButton.classList.add('cursor-pointer', 'text-gray-500', 'mt-4');
+        backButton.addEventListener('click', () => {
+            const parentPath = path.slice(0, -1);
+            const parentFolder = parentPath.reduce((acc, part) => acc[part], folderTree);
+            displayFolderContents(parentFolder, container, zip, parentPath);
+        });
+        container.appendChild(backButton);
+    }
+}
+
 // Circle display
 // Stop button & Pause button
 
