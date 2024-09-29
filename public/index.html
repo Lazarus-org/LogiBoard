@@ -57,6 +57,22 @@
         #upload-text{
             animation: uploadText 1.5s infinite;
         }
+        #done{
+            display: grid;
+            grid-template-columns: 5fr 0.2fr 3fr;
+        }
+        #url-done {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        #send-another:hover{
+            color:rgb(141, 18, 18)
+        }
+        #copy:hover,#open:hover{
+            background-color: rgb(141, 18, 18);
+        }
     </style>
 
 </head>
@@ -72,8 +88,8 @@
 
     <main id="main-upload" class="w-11/12 bg-gray-0 flex flex-col justify-center mt-3 m-auto rounded-md relative z-0 shadow-2xl">
         <div class="text-center">
-            <h1 class="text-white text-7xl mt-10 mb-2 leading-tight">Secure Cloud Storage &<br>Communication</h1>
-            <h4 id="main-h4" class="text-zinc-200 text-xl">Grab Premium Account today Check out our awesome deal!</h4>
+            <h1 class="text-white text-7xl mt-10 mb-2 leading-tight">Simple and safe to<br> upload</h1>
+            <h4 id="main-h4" class="text-zinc-200 text-xl">User-friendly interface and high speed, upload your files easily!</h4>
         </div>
                                                                  <!-- Upload the zip file -->
         <div id="drag-drop-area" class="absolute z-10 w-2/5 h-2/4 p-2 top-80 left-1/2 transform -translate-x-1/2 bg-back-0 rounded-md flex justify-center items-center shadow-2xl">
@@ -95,8 +111,32 @@
             </div>
             <h3 id="upload-text" class="text-center text-sm text-gray-0 mt-5">Uploading...</h3>
         </div>
+                                                                 <!-- End of extract -->
+        <div id="done" class="absolute z-10 w-2/5 h-2/4 p-2 top-80 left-1/2 transform -translate-x-1/2 bg-back-0 rounded-md shadow-2xl" style="display: none;">
 
-    </main>    
+            <div class="w-full h-full flex flex-col justify-center items-center">
+                <img src="imgs/done-50.png" alt="Done-icon" class="w-20 h-20 mb-2">
+                <h4 class="text-xl">You'r done!</h4>
+                <p class="text-center mt-1" style="color: rgba(0, 0, 0, 0.68); font-size: 14px; line-height: 18px;">Your zip file extracted successfully . </p>
+                <h3  id="send-another" class="mt-4 cursor-pointer" style="transition: 0.3s ease;">Send Another?</h3>
+            </div>
+
+            <div class="flex items-center justify-start">
+                <hr class="h-full w-px" style="background-color: #B0D0DB;">
+            </div>
+
+            <div class="flex flex-col items-center justify-evenly">
+                
+                    <button id="open" class="flex flex-row items-center justify-center bg-gray-0 rounded-xl shadow-2xl cursor-pointer"style="transition: 0.4s ease; padding: 5px 20px ">
+                        <img src="imgs/open-50.png" alt="open-icon" class="w-4 h-4">
+                        <p class="text-sm text-white ml-2">Open Link</p>
+                    </button>
+                
+            </div>
+
+        </div>
+
+    </main> 
 
 
 
