@@ -10,12 +10,56 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 
 
     <style>
+        main{
+            background: rgb(1,0,4);
+            background: radial-gradient(circle, rgba(1,0,4,1) 40%, rgb(6, 4, 25) 60%);
+        }
         #main-h4{
             margin-bottom: 15%;
+        }
+        @keyframes uploadIcon {
+            0% {
+                transform:  scale(1);
+            }
+            50% {
+                transform:  scale(1.1);
+            }
+            100% {
+                transform:  scale(1);
+            }
+        }
+        #upload-icon {
+            transition: transform 0.4s ease;
+            animation: uploadIcon 2.5s infinite;
+        }
+        @keyframes blinkBorder {
+            0% {
+                border-color: #d8daf6;
+            }
+            50% {
+                border-color: #e220cb;
+            }
+            100% {
+                border-color: #d8daf6;
+            }
+        }
+        #drop-zone {
+            border-width: 2px;
+            border-style: dashed;
+            border-color: transparent;
+            animation: blinkBorder 1.5s infinite;
         }
         .circle {
             position: relative;
@@ -89,7 +133,7 @@
     </style>
 
 </head>
-<body class="m-0 p-0 box-border w-full h-full bg-back-0 font-body flex flex-col justify-center">
+<body class="m-0 p-0 box-border w-full h-full bg-back-0 font-body flex flex-col justify-center"  style="font-family: Caveat;">
     
     <nav class="w-11/12 mt-3.5 flex m-auto">
         <div class="flex justify-start w-3/4">
@@ -101,13 +145,13 @@
 
     <main id="main-upload" class="w-11/12 bg-gray-0 flex flex-col justify-center mt-3 m-auto rounded-md relative z-0 shadow-2xl">
         <div class="text-center">
-            <h1 class="text-white text-7xl mt-10 mb-2 leading-tight">Simple and safe to<br> upload</h1>
-            <h4 id="main-h4" class="text-zinc-200 text-xl">User-friendly interface and high speed, upload your files easily!</h4>
+            <h1 class="text-white text-7xl mt-10 mb-2 leading-tight" style="font-family: Spicy Rice;">Simple and safe to<br> upload</h1>
+            <h4 id="main-h4" class="text-zinc-400 text-xl">User-friendly interface and high speed, upload your files easily!</h4>
         </div>
                                                                  <!-- Upload the zip file -->
         <div id="drag-drop-area" class="absolute z-10 w-2/5 h-2/4 p-2 top-80 left-1/2 transform -translate-x-1/2 bg-back-0 rounded-md flex justify-center items-center shadow-2xl">
             <div id="drop-zone" class="border-dashed border-2 border-gray-0 rounded-md h-full w-full flex flex-col justify-center items-center shadow-lg">
-                <h3 class="text-center text-lg text-gray-0">Please select the zip file you want<br>to upload</h3>
+                <h3 class="text-center text-lg text-gray-0">Please select the <span class="text-rose-800">zip file</span> you want<br>to upload</h3>
                 <input type="file" id="file-input" class="hidden" accept=".zip" multiple>
                 <img id="upload-icon" src="imgs/upload-to-cloud-50.png" alt="upload-icon" class="mt-5 cursor-pointer">
             </div>
